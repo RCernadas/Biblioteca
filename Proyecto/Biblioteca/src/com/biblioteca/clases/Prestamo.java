@@ -2,7 +2,6 @@ package com.biblioteca.clases;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
-import java.time.temporal.TemporalUnit;
 
 import com.biblioteca.clases.documentos.Libro;
 import com.biblioteca.clases.utils.TipoUsuario;
@@ -97,7 +96,7 @@ public class Prestamo implements PrestamoInterfaz {
 		StringBuilder builder = new StringBuilder();
 		builder.append(documento.getTitulo() + "\t");
 		if (documento instanceof Libro) {
-			builder.append("(" + ((Libro) documento).getAnhoPublicacion().getYear() + "(" + "\t");
+			builder.append("(" + ((Libro) documento).getAnhoPublicacion().getYear() + ")" + "\t");
 		}
 		builder.append("Cod: " + documento.getIdDocumento());
 		builder.append("Plazo: " + calcularDiasPrestamo() + "\n\t");

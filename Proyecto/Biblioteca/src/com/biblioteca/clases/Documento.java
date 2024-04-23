@@ -19,7 +19,7 @@ public abstract class Documento implements DocumentoInterfaz {
 	}
 
 	@Override
-	public abstract int calcularTotalEjemplares() ;
+	public abstract int calcularTotalEjemplares();
 	
 	
 	public String getIdDocumento() {
