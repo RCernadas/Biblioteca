@@ -3,26 +3,26 @@ package com.biblioteca.clases;
 import com.biblioteca.interfaces.DocumentoInterfaz;
 
 public abstract class Documento implements DocumentoInterfaz {
-	private int idDocumento;
+	private String idDocumento;
 	private String titulo;
 	private boolean isDisponible;
 	private int totalEjemplares;
 	
 	
 	
-	public Documento(int idDocumento, String titulo, boolean isDisponible, int totalEjemplares) {
+	public Documento(String idDocumento, String titulo, boolean isDisponible) {
 		super();
 		this.idDocumento = idDocumento;
 		this.titulo = titulo;
 		this.isDisponible = isDisponible;
-		this.totalEjemplares = totalEjemplares;
+		this.totalEjemplares = calcularTotalEjemplares();
 	}
 
 	@Override
 	public abstract int calcularTotalEjemplares() ;
 	
 	
-	public int getIdDocumento() {
+	public String getIdDocumento() {
 		return idDocumento;
 	}
 
@@ -38,7 +38,7 @@ public abstract class Documento implements DocumentoInterfaz {
 		return totalEjemplares;
 	}
 
-	public void setIdDocumento(int idDocumento) {
+	public void setIdDocumento(String idDocumento) {
 		this.idDocumento = idDocumento;
 	}
 

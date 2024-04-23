@@ -11,6 +11,7 @@ disponible BOOLEAN
 CREATE TABLE Libro (
 id_documento VARCHAR(10),
 autor VARCHAR(30),
+anho_publicacion DATE,
 FOREIGN KEY(id_documento) REFERENCES Documento(id)
 );
 

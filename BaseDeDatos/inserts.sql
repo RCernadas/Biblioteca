@@ -7,10 +7,10 @@ INSERT INTO Documento (id, titulo, disponible) VALUES
 ('R-BNV','Historia del Arte', TRUE);
 
 -- Insertar datos en la tabla Libro
-INSERT INTO Libro (id_documento, autor) VALUES
-('L-P22', 'Juan Pérez'),
-('L-V21', 'Homero'),
-('L-CVA', 'María Rodríguez');
+INSERT INTO Libro (id_documento, autor, anho_publicacion) VALUES
+('L-P22', 'Juan Pérez', '1973-01-01'),
+('L-V21', 'Homero', '1976-01-01'),
+('L-CVA', 'María Rodríguez', '1898-01-01');
 
 -- Insertar datos en la tabla Revista
 INSERT INTO Revista (id_documento, num_revista) VALUES

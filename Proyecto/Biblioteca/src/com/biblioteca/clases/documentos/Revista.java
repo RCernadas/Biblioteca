@@ -5,8 +5,8 @@ import com.biblioteca.clases.Documento;
 public final class Revista extends Documento {
 	private int numeroRevista;
 
-	public Revista(int idDocumento, String titulo, boolean isDisponible, int totalEjemplares, int numeroRevista) {
-		super(idDocumento, titulo, isDisponible, totalEjemplares);
+	public Revista(String idDocumento, String titulo, boolean isDisponible, int numeroRevista) {
+		super(idDocumento, titulo, isDisponible);
 		this.numeroRevista = numeroRevista;
 	}
 
