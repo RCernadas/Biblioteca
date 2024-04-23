@@ -53,6 +53,23 @@ public abstract class Documento implements DocumentoInterfaz {
 	public void setTotalEjemplares(int totalEjemplares) {
 		this.totalEjemplares = totalEjemplares;
 	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Documento [idDocumento=");
+		builder.append(idDocumento);
+		builder.append(", titulo=");
+		builder.append(titulo);
+		builder.append(", isDisponible=");
+		builder.append(isDisponible);
+		builder.append(", totalEjemplares=");
+		builder.append(totalEjemplares);
+		builder.append("]");
+		return builder.toString();
+	}
+
+	
 	
 	
 	
