@@ -5,8 +5,8 @@ public enum TipoUsuario {
 	USUARIO_OCASIONAL ("Usuario Ocasional");
 
 	private String tipoUsuarioString;
-	TipoUsuario(String string) {
-		// TODO Auto-generated constructor stub
+	private TipoUsuario(String string) {
+		this.tipoUsuarioString = string;
 	}
 	public String getTipoUsuarioString() {
 		return tipoUsuarioString;

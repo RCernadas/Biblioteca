@@ -21,7 +21,8 @@ public class Consultas {
 	}
 	
 	public static Documento selecccionarDocumento(String codigo) {
-		String consulta = "SELECT id, titulo, disponible, id_documento, autor FROM documento as d join libro as li on(d.id = li.id_documento) where d.titulo LIKE '%"+ nombreDocumento +"%'";
+		boolean isDisponible = false;
+		String consulta = "SELECT id, titulo, disponible, id_documento, autor FROM documento as d join libro as li on(d.id = li.id_documento) where d.titulo LIKE '%"+ codigo +"%'";
 		try {
 			PreparedStatement stmt = Conexion.getConexion().prepareStatement(consulta);
 			ResultSet rs = stmt.executeQuery();

@@ -91,13 +91,13 @@ public class Prestamo implements PrestamoInterfaz {
 	public void setFechaDevolucion(LocalDate fechaDevolucion) {
 		this.fechaDevolucion = fechaDevolucion;
 	}
-
+	
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
 		builder.append(documento.getTitulo() + "\t");
 		if (documento instanceof Libro) {
-			builder.append("(" + ((Libro) documento).getAnhoPublicacion() + "(" + "\t");
+			builder.append("(" + ((Libro) documento).getAnhoPublicacion().getYear() + "(" + "\t");
 		}
 		builder.append("Cod: " + documento.getIdDocumento());
 		builder.append("Plazo: " + calcularDiasPrestamo() + "\n\t");
