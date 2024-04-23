@@ -1,21 +1,21 @@
 -- Insertar datos en la tabla Documento
-INSERT INTO Documento (titulo, disponible) VALUES
-('Introducción a la Programación', TRUE),
-('La Odisea', TRUE),
-('Revista de Ciencia', FALSE),
-('Matemáticas Avanzadas', TRUE),
-('Historia del Arte', TRUE);
+INSERT INTO Documento (id, titulo, disponible) VALUES
+('L-P22', 'Introducción a la Programación', TRUE),
+('L-V21','La Odisea', TRUE),
+('R-121','Revista de Ciencia', FALSE),
+('L-CVA', 'Matemáticas Avanzadas', TRUE),
+('R-BNV','Historia del Arte', TRUE);
 
 -- Insertar datos en la tabla Libro
 INSERT INTO Libro (id_documento, autor) VALUES
-(1, 'Juan Pérez'),
-(2, 'Homero'),
-(4, 'María Rodríguez');
+('L-P22', 'Juan Pérez'),
+('L-V21', 'Homero'),
+('L-CVA', 'María Rodríguez');
 
 -- Insertar datos en la tabla Revista
-INSERT INTO Revista (id_documento) VALUES
-(3),
-(5);
+INSERT INTO Revista (id_documento, num_revista) VALUES
+('R-121', 132),
+('R-BNV', 12);
 
 -- Insertar datos en la tabla Usuario
 INSERT INTO Usuario (dni, nombre, apellido_1, apellido_2, tipo_usuario) VALUES
@@ -25,8 +25,8 @@ INSERT INTO Usuario (dni, nombre, apellido_1, apellido_2, tipo_usuario) VALUES
 ('13579246D', 'Luis', 'Martínez', 'Sánchez', 'usuario_ocasional');
 
 -- Insertar datos en la tabla Prestamo
-INSERT INTO Prestamo (duracion_prestamo, fecha_prestamo, id_documento, id_usuario) VALUES
-('14', '2024-04-23', 1, 1),
-('7', '2024-04-20', 2, 2),
-('21', '2024-04-18', 4, 3),
-('14', '2024-04-21', 5, 4);
+INSERT INTO Prestamo (fecha_prestamo, fecha_devolucion, id_documento, id_usuario) VALUES
+('2024-04-13', '2024-04-23', 'L-P22', 1),
+('2024-04-3', '2024-04-20', 'L-V21', 2),
+('2024-04-2', '2024-04-18', 'L-CVA', 3),
+('2024-04-1', '2024-04-21', 'R-121', 4);

@@ -1,5 +1,6 @@
 package com.biblioteca.basededatos;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
@@ -19,12 +20,11 @@ public class Consultas {
 		}
 	}
 	
-	public static void selecccionarDocumento(String nombreDocumento) {
+	public static Documento selecccionarDocumento(String codigo) {
 		String consulta = "SELECT id, titulo, disponible, id_documento, autor FROM documento as d join libro as li on(d.id = li.id_documento) where d.titulo LIKE '%"+ nombreDocumento +"%'";
 		try {
-			Statement stmt = Conexion.getConexion().createStatement();
-			ResultSet rs = stmt.executeQuery(consulta);
-			
+			PreparedStatement stmt = Conexion.getConexion().prepareStatement(consulta);
+			ResultSet rs = stmt.executeQuery();
 			while(rs.next()) {
 				String titulo = rs.getString("titulo");
 				System.out.println(titulo);
@@ -35,7 +35,8 @@ public class Consultas {
 		} finally {
 			Conexion.closeConexion();
 		}
-		Documento documento;
+		Documento documento = null;
+		return documento;
 
 	}
 	

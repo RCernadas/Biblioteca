@@ -3,19 +3,20 @@ CREATE DATABASE biblioteca;
 USE biblioteca;
 
 CREATE TABLE Documento (
-id INT AUTO_INCREMENT PRIMARY KEY,
+id VARCHAR(10) PRIMARY KEY,
 titulo VARCHAR(45),
 disponible BOOLEAN
 );
 
 CREATE TABLE Libro (
-id_documento INT AUTO_INCREMENT,
+id_documento VARCHAR(10),
 autor VARCHAR(30),
 FOREIGN KEY(id_documento) REFERENCES Documento(id)
 );
 
 CREATE TABLE Revista (
-id_documento INT AUTO_INCREMENT,
+id_documento VARCHAR(10),
+num_revista INT,
 FOREIGN KEY(id_documento) REFERENCES Documento(id)
 );
 
@@ -30,11 +31,11 @@ tipo_usuario ENUM('socio', 'usuario_ocasional')
 
 CREATE TABLE Prestamo(
 id_prestamo INT AUTO_INCREMENT PRIMARY KEY,
-duracion_prestamo VARCHAR(2),
+fecha_devolucion DATE,
 fecha_prestamo DATE,
-id_documento INT,
+id_documento VARCHAR(10),
 id_usuario INT,
 FOREIGN KEY(id_documento) REFERENCES Documento(id),
-FOREIGN KEY(id_usuario) REFERENCES Documento(id)
+FOREIGN KEY(id_usuario) REFERENCES Usuario(id)
 );
 
