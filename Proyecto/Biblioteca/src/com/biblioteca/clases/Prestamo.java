@@ -12,9 +12,10 @@ public class Prestamo implements PrestamoInterfaz {
 	private LocalDate fechaDevolucion;
 	
 	@Override
-	public void calcularFechaDevolucion() {
-		// TODO Auto-generated method stub
+	public LocalDate calcularFechaDevolucion() {
 		
+		// TODO Auto-generated method stub
+		return fechaDevolucion;
 	}
 	
 
