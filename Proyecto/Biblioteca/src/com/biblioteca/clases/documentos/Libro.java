@@ -8,9 +8,9 @@ public final class Libro extends Documento {
 	private LocalDate anhoPublicacion;
 	private String autor;
 
-	public Libro(int idDocumento, String titulo, boolean isDisponible, int totalEjemplares, LocalDate anhoPublicacion,
+	public Libro(String idDocumento, String titulo, boolean isDisponible, LocalDate anhoPublicacion,
 			String autor) {
-		super(idDocumento, titulo, isDisponible, totalEjemplares);
+		super(idDocumento, titulo, isDisponible);
 		this.anhoPublicacion = anhoPublicacion;
 		this.autor = autor;
 	}
