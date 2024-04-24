@@ -7,7 +7,7 @@ import com.biblioteca.clases.Prestamo;
 import com.biblioteca.clases.Usuario;
 
 public interface BibliotecarioInterfaz {
-		Documento seleccionarDocumento(String codDocumento);
+		void seleccionarDocumento(String codDocumento);
 		
 		void prestarDocumento(Documento documento, Usuario usuario);
 		
