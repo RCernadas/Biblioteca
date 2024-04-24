@@ -8,7 +8,7 @@ public class Conexion {
 	private static Connection conexion = null;
 	private static final String URL = "jdbc:mysql://localhost:3306/biblioteca";
 	private static final String USUARIO = "root";
-	private static final String CONTRASENHA = "root";
+	private static final String CONTRASENHA = "abc123.";
 	
 	//OBTENER LA INSTANCIA DE LA CONEXION
 	public static Connection getConexion() {

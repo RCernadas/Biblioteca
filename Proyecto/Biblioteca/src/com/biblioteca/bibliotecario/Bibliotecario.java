@@ -6,6 +6,7 @@ import com.biblioteca.basededatos.Consultas;
 import com.biblioteca.clases.Documento;
 import com.biblioteca.clases.Prestamo;
 import com.biblioteca.clases.Usuario;
+import com.biblioteca.clases.utils.TipoUsuario;
 import com.biblioteca.interfaces.BibliotecarioInterfaz;
 
 public class Bibliotecario implements BibliotecarioInterfaz {
@@ -14,15 +15,16 @@ public class Bibliotecario implements BibliotecarioInterfaz {
 	@Override
 	public void seleccionarDocumento(String codDocumento) {
 		documentoActual = Consultas.selecccionarDocumento(codDocumento);
+		System.out.println("Documento actual ->" + getDocumentoActual());
 	}
 
 	@Override
-	public void prestarDocumento(Documento documento, Usuario usuario) {
-		// TODO Auto-generated method stub
+	public void prestarDocumento(Usuario usuario) {
+		
 	}
 
 	@Override
-	public void devolverDocumento(Documento documento, Usuario usuario) {
+	public void devolverDocumento(Usuario usuario) {
 		// TODO Auto-generated method stub
 
 	}
@@ -31,6 +33,13 @@ public class Bibliotecario implements BibliotecarioInterfaz {
 	public List<Prestamo> generarInformePrestamo() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	public void insertUsuario() {
+		Consultas.insertarUsuario("111111Y", "PedroPedro", "PedroPedro", "PedroPedro", TipoUsuario.SOCIO);
+	}
+	public void deleteUsuario() {
+		Consultas.deleteUsuario("111111Y");
 	}
 	
 	public Documento getDocumentoActual() {

@@ -7,7 +7,10 @@ public final class Usuario {
 	private String dni;
 	private String nombre;
 	private TipoUsuario tipo;
-
+	
+	public Usuario() {	
+	}
+	
 	public Usuario(int idUsuario, String dni, String nombre, TipoUsuario tipo) {
 		super();
 		this.idUsuario = idUsuario;
