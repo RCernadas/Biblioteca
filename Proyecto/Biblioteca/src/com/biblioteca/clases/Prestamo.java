@@ -17,9 +17,8 @@ public class Prestamo implements PrestamoInterfaz {
 	private LocalDate fechaSalida;
 	private LocalDate fechaDevolucion;
 
-	public Prestamo(int idPrestamo, Usuario usuario, Documento documento, LocalDate fechaSalida) {
+	public Prestamo(Usuario usuario, Documento documento, LocalDate fechaSalida) {
 		super();
-		this.idPrestamo = idPrestamo;
 		this.usuario = usuario;
 		this.documento = documento;
 		this.fechaSalida = fechaSalida;

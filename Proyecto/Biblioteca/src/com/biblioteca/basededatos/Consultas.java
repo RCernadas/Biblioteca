@@ -1,11 +1,15 @@
 package com.biblioteca.basededatos;
 
+import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.time.LocalDate;
 
 import com.biblioteca.clases.Documento;
+import com.biblioteca.clases.Prestamo;
+import com.biblioteca.clases.Usuario;
 import com.biblioteca.clases.documentos.Libro;
 import com.biblioteca.clases.documentos.Revista;
 
@@ -67,5 +71,29 @@ public class Consultas {
 		return documento;
 
 	}
-
+	
+	public static void PrestarDocumento(Usuario usuario, Documento documento) {
+		Prestamo prestamo = new Prestamo(usuario, documento, LocalDate.now());
+		Boolean isDisponible;
+		Boolean alcanzandoLimiteDePrestamos;
+		
+		try (Connection conexion = Conexion.getConexion()){
+		String consulta = "INSERT into prestamo(id_prestamo, fecha_devolucion, fecha_prestamo, id_documento, id_usuario) values (?,?,?,?,?)";
+		PreparedStatement pstmt = Conexion.getConexion().prepareStatement(consulta);
+		
+		pstmt.setDate(0, Date.valueOf(prestamo.getFechaDevolucion()));
+		pstmt.setDate(1, Date.valueOf(prestamo.getFechaSalida()));
+		pstmt.setString(2, documento.getIdDocumento());
+		pstmt.setInt(3, usuario.getIdUsuario());
+		
+		if(documento.isDisponible()) {
+		pstmt.executeUpdate();
+		} else {
+			
+		}
+		
+		} catch (Exception e) {
+			
+		} 
+	}
 }
