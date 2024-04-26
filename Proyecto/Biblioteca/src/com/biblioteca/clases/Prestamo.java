@@ -23,6 +23,7 @@ public class Prestamo implements PrestamoInterfaz {
 		this.documento = documento;
 		this.fechaSalida = fechaSalida;
 		this.fechaDevolucion = calcularFechaDevolucion();
+		usuario.setNumDocumentosEnPrestamo(usuario.getNumDocumentosEnPrestamo()+1);
 	}
 
 	@Override

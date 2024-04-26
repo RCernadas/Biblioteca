@@ -3,10 +3,7 @@ package com.biblioteca.principal;
 import java.util.List;
 import java.util.Scanner;
 
-import com.biblioteca.basededatos.Conexion;
-import com.biblioteca.basededatos.Consultas;
 import com.biblioteca.bibliotecario.Bibliotecario;
-import com.biblioteca.clases.Documento;
 import com.biblioteca.clases.Prestamo;
 import com.biblioteca.clases.Usuario;
 

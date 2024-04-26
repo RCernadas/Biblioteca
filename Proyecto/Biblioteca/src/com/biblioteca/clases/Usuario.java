@@ -1,22 +1,44 @@
 package com.biblioteca.clases;
 
+import java.util.List;
+
 import com.biblioteca.clases.utils.TipoUsuario;
 
 public final class Usuario {
+	private static final int SOCIO_NUM_DOCUMENTOS_EN_PRESTAMO = 20;
+	private static final int NO_SOCIO_DOCUMENTOS_EN_PRESTAMO = 2;
+
 	private int idUsuario;
 	private String dni;
 	private String nombre;
 	private TipoUsuario tipo;
-	
-	public Usuario() {	
+	private int numDocumentosEnPrestamo;
+
+	public Usuario() {
 	}
-	
+
 	public Usuario(int idUsuario, String dni, String nombre, TipoUsuario tipo) {
 		super();
 		this.idUsuario = idUsuario;
 		this.dni = dni;
 		this.nombre = nombre;
 		this.tipo = tipo;
+		numDocumentosEnPrestamo = 0;
+	}
+
+	public boolean superaNumeroMaxDeDocumentosEnPrestamo() {
+		boolean ret = false;
+		if (getTipo().equals(TipoUsuario.SOCIO)) {
+			if (getNumDocumentosEnPrestamo() >= 20) {
+				ret = true;
+			}
+		}
+		if (getTipo().equals(TipoUsuario.USUARIO_OCASIONAL)) {
+			if (getNumDocumentosEnPrestamo() >= 2) {
+				ret = true;
+			}
+		}
+		return ret;
 	}
 
 	public int getIdUsuario() {
@@ -51,4 +73,11 @@ public final class Usuario {
 		this.tipo = tipo;
 	}
 
+	public int getNumDocumentosEnPrestamo() {
+		return numDocumentosEnPrestamo;
+	}
+
+	public void setNumDocumentosEnPrestamo(int numDocumentosEnPrestamo) {
+		this.numDocumentosEnPrestamo = numDocumentosEnPrestamo;
+	}
 }

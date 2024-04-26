@@ -101,29 +101,28 @@ public class Consultas {
 
 	}
 
-	public static void PrestarDocumento(Usuario usuario, Documento documento) {
+	public static void PrestarDocumento(String dni,Documento documento) {
+		Usuario usuario = obtenerUsuario(dni);
 		Prestamo prestamo = new Prestamo(usuario, documento, LocalDate.now());
-		Boolean isDisponible;
-		Boolean alcanzandoLimiteDePrestamos;
+		String consulta = "INSERT into prestamo(id_prestamo, fecha_devolucion, fecha_prestamo, id_documento, id_usuario) values (?,?,?,?,?)";
 
-		try (Connection conexion = Conexion.getConexion()) {
-			String consulta = "INSERT into prestamo(id_prestamo, fecha_devolucion, fecha_prestamo, id_documento, id_usuario) values (?,?,?,?,?)";
-			PreparedStatement pstmt = Conexion.getConexion().prepareStatement(consulta);
-
+		try (Connection conexion = Conexion.getConexion(); PreparedStatement pstmt = Conexion.getConexion().prepareStatement(consulta);) {
+		
 			pstmt.setDate(0, Date.valueOf(prestamo.getFechaDevolucion()));
 			pstmt.setDate(1, Date.valueOf(prestamo.getFechaSalida()));
 			pstmt.setString(2, documento.getIdDocumento());
 			pstmt.setInt(3, usuario.getIdUsuario());
 
-			if (documento.isDisponible()) {
+			if (documento.isDisponible() && !usuario.superaNumeroMaxDeDocumentosEnPrestamo()) {
 				pstmt.executeUpdate();
-			} else {
-
-			}
-
+			} 
 		} catch (Exception e) {
 
 		}
+	}
+	
+	public static void DevolverDocumentoActual() {
+		
 	}
 
 	public static Usuario obtenerUsuario(String dni) {
