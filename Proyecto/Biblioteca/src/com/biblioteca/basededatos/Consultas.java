@@ -90,24 +90,25 @@ public class Consultas {
 
 	}
 
-	public static void PrestarDocumento(String dni,Documento documento) {
+	public static Usuario PrestarDocumento(String dni,Documento documento) {
 		Usuario usuario = obtenerUsuario(dni);
 		Prestamo prestamo = new Prestamo(usuario, documento, LocalDate.now());
-		String consulta = "INSERT into prestamo(id_prestamo, fecha_devolucion, fecha_prestamo, id_documento, id_usuario) values (?,?,?,?,?)";
+		String consulta = "INSERT into prestamo(fecha_devolucion, fecha_prestamo, id_documento, id_usuario) values (?,?,?,?)";
 
-		try (Connection conexion = Conexion.getConexion(); PreparedStatement pstmt = Conexion.getConexion().prepareStatement(consulta);) {
+		try (PreparedStatement pstmt = Conexion.getConexion().prepareStatement(consulta);) {
 		
-			pstmt.setDate(0, Date.valueOf(prestamo.getFechaDevolucion()));
-			pstmt.setDate(1, Date.valueOf(prestamo.getFechaSalida()));
-			pstmt.setString(2, documento.getIdDocumento());
-			pstmt.setInt(3, usuario.getIdUsuario());
+			pstmt.setDate(1, Date.valueOf(prestamo.getFechaDevolucion()));
+			pstmt.setDate(2, Date.valueOf(prestamo.getFechaSalida()));
+			pstmt.setString(3, documento.getIdDocumento());
+			pstmt.setInt(4, usuario.getIdUsuario());
 
 			if (documento.isDisponible() && !usuario.superaNumeroMaxDeDocumentosEnPrestamo()) {
 				pstmt.executeUpdate();
 			} 
 		} catch (Exception e) {
-
+			e.printStackTrace();
 		}
+		return usuario;
 	}
 	
 	public static void DevolverDocumentoActual(Documento documento) {
@@ -126,7 +127,7 @@ public class Consultas {
 				usuario.setIdUsuario(rs.getInt("id"));
 				usuario.setDni(rs.getString("dni"));
 				usuario.setNombre(rs.getString("nombre"));
-				usuario.setTipo(TipoUsuario.valueOf(rs.getString("tipo_usuario")));
+				usuario.setTipo(TipoUsuario.valueOf((rs.getString("tipo_usuario").toUpperCase())));
 			}
 			rs.close();
 		} catch (Exception e) {

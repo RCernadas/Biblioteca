@@ -16,7 +16,7 @@ public class Principal {
 		String codDocumento;
 		
 		Usuario usuario = null;
-		
+		String dni = "12345678A";
 		int opcion;
 		opcion = accionesUsuarios();
 		do {
@@ -27,10 +27,10 @@ public class Principal {
 				bibliotecario.seleccionarDocumento(codDocumento);
 			}
 			case 2 -> {
-				bibliotecario.prestarDocumento(usuario);
+				bibliotecario.prestarDocumento(dni);
 			}
 			case 3 -> {
-				bibliotecario.devolverDocumento(usuario);
+				bibliotecario.devolverDocumento(dni);
 			}	
 			case 4 -> {
 				List<Prestamo> listaPrestamos;

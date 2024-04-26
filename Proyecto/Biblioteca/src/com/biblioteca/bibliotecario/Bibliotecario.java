@@ -19,12 +19,17 @@ public class Bibliotecario implements BibliotecarioInterfaz {
 	}
 
 	@Override
-	public void prestarDocumento(Usuario usuario) {
+	public void prestarDocumento(String dni) {
+		if (documentoActual != null) {
+			Usuario usuario = Consultas.PrestarDocumento(dni, documentoActual);
+			System.out.println("Se ha prestado el documento actual: "+getDocumentoActual() +" a: -> " + usuario.getDni() );
+			documentoActual = null;
+		}else System.out.println("No se ha podido prestar el documento porque no has seleccionado ningun documento");
 		
 	}
 
 	@Override
-	public void devolverDocumento(Usuario usuario) {
+	public void devolverDocumento(String dni) {
 		// TODO Auto-generated method stub
 
 	}

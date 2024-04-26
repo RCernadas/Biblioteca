@@ -11,8 +11,8 @@ public class Conexion {
 	private static final String CONTRASENHA = "abc123.";
 	
 	//OBTENER LA INSTANCIA DE LA CONEXION
-	public static Connection getConexion() {
-		if (conexion == null) {
+	public static Connection getConexion() throws SQLException{
+		if (conexion == null || conexion.isClosed()) {
 			try {
 				Class.forName("com.mysql.cj.jdbc.Driver");
 				conexion = DriverManager.getConnection(URL, USUARIO, CONTRASENHA);

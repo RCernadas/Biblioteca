@@ -9,9 +9,11 @@ import com.biblioteca.clases.Usuario;
 public interface BibliotecarioInterfaz {
 		void seleccionarDocumento(String codDocumento);
 		
-		void prestarDocumento(Usuario usuario);
+		void prestarDocumento(String dni);
 		
-		void devolverDocumento(Usuario usuario);
+		void devolverDocumento(String dni);
 		
 		List<Prestamo> generarInformePrestamo();
+
+		
 }
