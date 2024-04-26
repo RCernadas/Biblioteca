@@ -121,7 +121,7 @@ public class Consultas {
 		}
 	}
 	
-	public static void DevolverDocumentoActual() {
+	public static void DevolverDocumentoActual(Documento documento) {
 		
 	}
 
