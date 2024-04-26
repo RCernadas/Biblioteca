@@ -110,8 +110,20 @@ public class Consultas {
 		}
 	}
 	
-	public static void DevolverDocumentoActual(Documento documento) {
+	public static Usuario DevolverDocumentoActual(Documento documento, String dni) {
+		Usuario usuario = obtenerUsuario(dni);
+		String consulta = "DELETE FROM prestamo where id_documento = ?";
 		
+		try(Connection conexion = Conexion.getConexion(); PreparedStatement pstmt = Conexion.getConexion().prepareStatement(consulta);){
+			pstmt.setString(1, documento.getIdDocumento());
+				pstmt.executeUpdate();
+				documento.setDisponible(true);
+				usuario.setNumDocumentosEnPrestamo(usuario.getNumDocumentosEnPrestamo()-1);
+		} catch (Exception e) {
+			
+		}
+		
+		return usuario;
 	}
 
 	public static Usuario obtenerUsuario(String dni) {
