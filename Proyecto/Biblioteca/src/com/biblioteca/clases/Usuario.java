@@ -25,6 +25,14 @@ public final class Usuario {
 		this.tipo = tipo;
 		numDocumentosEnPrestamo = 0;
 	}
+	
+	public int getNumDocumentosEnPrestamo() {
+		return numDocumentosEnPrestamo;
+	}
+
+	public void setNumDocumentosEnPrestamo(int numDocumentosEnPrestamo) {
+		this.numDocumentosEnPrestamo = numDocumentosEnPrestamo;
+	}
 
 	public boolean superaNumeroMaxDeDocumentosEnPrestamo() {
 		boolean ret = false;
@@ -73,7 +81,6 @@ public final class Usuario {
 		this.tipo = tipo;
 	}
 
-<<<<<<< HEAD
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
@@ -89,14 +96,4 @@ public final class Usuario {
 		return builder.toString();
 	}
 	
-	
-=======
-	public int getNumDocumentosEnPrestamo() {
-		return numDocumentosEnPrestamo;
-	}
-
-	public void setNumDocumentosEnPrestamo(int numDocumentosEnPrestamo) {
-		this.numDocumentosEnPrestamo = numDocumentosEnPrestamo;
-	}
->>>>>>> main
 }

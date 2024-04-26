@@ -17,17 +17,6 @@ import com.biblioteca.clases.utils.TipoUsuario;
 
 public class Consultas {
 
-	public void select() {
-		try {
-			Conexion.getConexion();
-			// AQUI VA EL CODIGO
-		} catch (Exception e) {
-
-		} finally {
-			Conexion.closeConexion();
-		}
-	}
-
 	public static void deleteUsuario(String dni) {
 		String consulta = "DELETE FROM usuario WHERE dni = ?";
 		try (PreparedStatement pstm = Conexion.getConexion().prepareStatement(consulta)) {
@@ -129,7 +118,6 @@ public class Consultas {
 		String consulta = "SELECT * FROM usuario WHERE dni LIKE ?";
 		Usuario usuario = new Usuario();
 		try (PreparedStatement pstm = Conexion.getConexion().prepareStatement(consulta)) {
-<<<<<<< HEAD
 
 			pstm.setString(1, dni);
 
@@ -140,20 +128,7 @@ public class Consultas {
 				usuario.setNombre(rs.getString("nombre"));
 				usuario.setTipo(TipoUsuario.valueOf(rs.getString("tipo_usuario")));
 			}
-			
-			
 			rs.close();
-=======
-			pstm.setString(1, dni);
-
-			ResultSet rs = pstm.executeQuery();
-
-			usuario.setIdUsuario(rs.getInt("id_usuario"));
-			usuario.setDni(rs.getString("dni"));
-			usuario.setNombre(rs.getString("nombre"));
-			usuario.setTipo(TipoUsuario.valueOf(rs.getString("tipo_usuario")));
-
->>>>>>> main
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
