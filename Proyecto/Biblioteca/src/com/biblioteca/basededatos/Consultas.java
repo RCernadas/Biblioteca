@@ -1,11 +1,15 @@
 package com.biblioteca.basededatos;
 
+import java.sql.Connection;
+
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.time.LocalDate;
 
 import com.biblioteca.clases.Documento;
+import com.biblioteca.clases.Prestamo;
 import com.biblioteca.clases.Usuario;
 import com.biblioteca.clases.documentos.Libro;
 import com.biblioteca.clases.documentos.Revista;
@@ -97,10 +101,35 @@ public class Consultas {
 
 	}
 
+	public static void PrestarDocumento(String dni,Documento documento) {
+		Usuario usuario = obtenerUsuario(dni);
+		Prestamo prestamo = new Prestamo(usuario, documento, LocalDate.now());
+		String consulta = "INSERT into prestamo(id_prestamo, fecha_devolucion, fecha_prestamo, id_documento, id_usuario) values (?,?,?,?,?)";
+
+		try (Connection conexion = Conexion.getConexion(); PreparedStatement pstmt = Conexion.getConexion().prepareStatement(consulta);) {
+		
+			pstmt.setDate(0, Date.valueOf(prestamo.getFechaDevolucion()));
+			pstmt.setDate(1, Date.valueOf(prestamo.getFechaSalida()));
+			pstmt.setString(2, documento.getIdDocumento());
+			pstmt.setInt(3, usuario.getIdUsuario());
+
+			if (documento.isDisponible() && !usuario.superaNumeroMaxDeDocumentosEnPrestamo()) {
+				pstmt.executeUpdate();
+			} 
+		} catch (Exception e) {
+
+		}
+	}
+	
+	public static void DevolverDocumentoActual(Documento documento) {
+		
+	}
+
 	public static Usuario obtenerUsuario(String dni) {
 		String consulta = "SELECT * FROM usuario WHERE dni LIKE ?";
 		Usuario usuario = new Usuario();
 		try (PreparedStatement pstm = Conexion.getConexion().prepareStatement(consulta)) {
+<<<<<<< HEAD
 
 			pstm.setString(1, dni);
 
@@ -114,6 +143,17 @@ public class Consultas {
 			
 			
 			rs.close();
+=======
+			pstm.setString(1, dni);
+
+			ResultSet rs = pstm.executeQuery();
+
+			usuario.setIdUsuario(rs.getInt("id_usuario"));
+			usuario.setDni(rs.getString("dni"));
+			usuario.setNombre(rs.getString("nombre"));
+			usuario.setTipo(TipoUsuario.valueOf(rs.getString("tipo_usuario")));
+
+>>>>>>> main
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
