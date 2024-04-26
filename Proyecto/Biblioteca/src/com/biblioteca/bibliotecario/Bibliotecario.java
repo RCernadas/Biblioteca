@@ -15,7 +15,7 @@ public class Bibliotecario implements BibliotecarioInterfaz {
 	@Override
 	public void seleccionarDocumento(String codDocumento) {
 		documentoActual = Consultas.selecccionarDocumento(codDocumento);
-		System.out.println("Documento actual ->" + getDocumentoActual());
+		System.out.println("Documento actual -> " + getDocumentoActual());
 	}
 
 	@Override

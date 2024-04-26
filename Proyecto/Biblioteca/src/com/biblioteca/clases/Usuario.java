@@ -51,4 +51,20 @@ public final class Usuario {
 		this.tipo = tipo;
 	}
 
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Usuario [idUsuario=");
+		builder.append(idUsuario);
+		builder.append(", dni=");
+		builder.append(dni);
+		builder.append(", nombre=");
+		builder.append(nombre);
+		builder.append(", tipo=");
+		builder.append(tipo.getTipoUsuarioString());
+		builder.append("]");
+		return builder.toString();
+	}
+	
+	
 }

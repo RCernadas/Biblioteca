@@ -98,19 +98,22 @@ public class Consultas {
 	}
 
 	public static Usuario obtenerUsuario(String dni) {
-		String consulta = "SELECT * FROM usuario WHERE dni = ?";
+		String consulta = "SELECT * FROM usuario WHERE dni LIKE ?";
 		Usuario usuario = new Usuario();
 		try (PreparedStatement pstm = Conexion.getConexion().prepareStatement(consulta)) {
-			pstm.setString(1, dni);
-			
-			
-			ResultSet rs = pstm.executeQuery();
 
-			usuario.setIdUsuario(rs.getInt("id_usuario"));
-			usuario.setDni(rs.getString("dni"));
-			usuario.setNombre(rs.getString("nombre"));
-			usuario.setTipo(TipoUsuario.valueOf(rs.getString("tipo_usuario")));
+			pstm.setString(1, dni);
+
+			ResultSet rs = pstm.executeQuery();
+			while (rs.next()) {
+				usuario.setIdUsuario(rs.getInt("id"));
+				usuario.setDni(rs.getString("dni"));
+				usuario.setNombre(rs.getString("nombre"));
+				usuario.setTipo(TipoUsuario.valueOf(rs.getString("tipo_usuario")));
+			}
 			
+			
+			rs.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -39,7 +39,7 @@ public class Principal {
 				listaPrestamos = bibliotecario.generarInformePrestamo();
 			}
 			case 5 -> {
-				bibliotecario.deleteUsuario();
+				System.out.println(Consultas.obtenerUsuario("12345678A"));
 
 			}
 			}
