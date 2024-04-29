@@ -125,6 +125,10 @@ public class Consultas {
 		
 		return usuario;
 	}
+	
+	public static Documento BuscarUnDocumento(String cadenaBusqueda) {
+		String consulta = "SELECT * FROM documento WHERE titulo LIKE '%"+ cadenaBusqueda + "%'";
+	}
 
 	public static Usuario obtenerUsuario(String dni) {
 		String consulta = "SELECT * FROM usuario WHERE dni LIKE ?";
