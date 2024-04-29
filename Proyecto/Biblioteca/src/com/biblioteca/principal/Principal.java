@@ -48,8 +48,8 @@ public class Principal {
 
 	private static int accionesUsuarios() {
 		int ret;
-		System.out.println("Menu:\n" + "1.Seleccionar un documento\n" + "2.Prestar Libro\n" + "3.Mostrar Libros prestados\n"
-				+ "4.Mostrar Libros completos\n" + "5.Salir\n");
+		System.out.println("Menu:\n" + "1.Seleccionar un documento\n" + "2.Prestar libro\n" + "3.Devolver libro\n"
+				+ "4.Mostrar lista prestamos\n" + "5.Salir\n");
 		System.out.println("Escoger opcion ");
 		ret = leerOpcion();
 		return ret;
@@ -60,6 +60,7 @@ public class Principal {
 		try {
 			ret = scan.nextLine();
 		} catch (Exception e) {
+			System.out.println("Error introduciendo el string");
 			leerString();
 		}
 		return ret;
@@ -70,6 +71,7 @@ public class Principal {
 		try {
 			ret = Integer.parseInt(scan.nextLine());
 		} catch (Exception e) {
+			System.out.println("Error introduciendo la opcion");
 			leerString();
 		}
 		return ret;
