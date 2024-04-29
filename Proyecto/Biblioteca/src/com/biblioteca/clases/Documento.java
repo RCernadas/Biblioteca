@@ -18,6 +18,12 @@ public abstract class Documento implements DocumentoInterfaz {
 		this.totalEjemplares = calcularTotalEjemplares();
 	}
 
+	public Documento() {
+		super();
+	}
+
+
+
 	@Override
 	public abstract int calcularTotalEjemplares();
 	

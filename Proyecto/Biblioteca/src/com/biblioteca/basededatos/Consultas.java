@@ -7,6 +7,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.biblioteca.clases.Documento;
 import com.biblioteca.clases.Prestamo;
@@ -127,8 +129,22 @@ public class Consultas {
 		return usuario;
 	}
 	
-	public static Documento BuscarUnDocumento(String cadenaBusqueda) {
-		String consulta = "SELECT * FROM documento WHERE titulo LIKE '%"+ cadenaBusqueda + "%'";
+	public static List<Documento> BuscarUnDocumento(String cadenaBusqueda) {
+		Documento documento = new Documento();
+		List<Documento> documentos = new ArrayList<>();
+		String consulta = "SELECT * FROM documento WHERE titulo LIKE '%?%'";
+		try(PreparedStatement pstm = Conexion.getConexion().prepareStatement(consulta)){
+			pstm.setString(1, cadenaBusqueda);
+			
+			ResultSet rs = pstm.executeQuery();
+			while(rs.next()) {
+				
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return documentos;
 	}
 
 	public static Usuario obtenerUsuario(String dni) {
