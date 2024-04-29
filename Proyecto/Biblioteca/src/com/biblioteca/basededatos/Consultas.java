@@ -45,7 +45,7 @@ public class Consultas {
 			e.printStackTrace();
 		}
 	}
-
+	
 	public static Documento selecccionarDocumento(String idDoc) {
 		Documento documento = null;
 		String consultaLibro = "SELECT id, titulo, disponible, autor, anho_publicacion FROM documento as d join libro as li on(d.id = li.id_documento) where d.id = '"
@@ -84,14 +84,15 @@ public class Consultas {
 			}
 
 		} catch (Exception e) {
-
+			System.out.println("NO SE HA PODIDO SELECCIONAR EL DOCUMENTO");
+			e.printStackTrace();
 		} finally {
 			Conexion.closeConexion();
 		}
 		return documento;
 
 	}
-
+	
 	public static Usuario PrestarDocumento(String dni,Documento documento) {
 		Usuario usuario = obtenerUsuario(dni);
 		Prestamo prestamo = new Prestamo(usuario, documento, LocalDate.now());
@@ -108,6 +109,7 @@ public class Consultas {
 				pstmt.executeUpdate();
 			} 
 		} catch (Exception e) {
+			System.out.println("NO SE HA PODIDO PRESTAR EL DOCUMENTO");
 			e.printStackTrace();
 		}
 		return usuario;
@@ -123,14 +125,15 @@ public class Consultas {
 				documento.setDisponible(true);
 				usuario.setNumDocumentosEnPrestamo(usuario.getNumDocumentosEnPrestamo()-1);
 		} catch (Exception e) {
-			
+			System.out.println("NO SE HA PODIDO DEVOLVER EL DOCUMENTO");
+			e.printStackTrace();
 		}
 		
 		return usuario;
 	}
 	
 	public static List<Documento> BuscarUnDocumento(String cadenaBusqueda) {
-		Documento documento = new Documento();
+		//Documento documento = new Documento();
 		List<Documento> documentos = new ArrayList<>();
 		String consulta = "SELECT * FROM documento WHERE titulo LIKE '%?%'";
 		try(PreparedStatement pstm = Conexion.getConexion().prepareStatement(consulta)){
